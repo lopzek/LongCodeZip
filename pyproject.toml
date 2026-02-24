@@ -48,6 +48,10 @@ dependencies = [
     "tree-sitter-languages",
     "tempdir",
     "wget",
+    "python-dotenv>=1.2.1",
+    "accelerate>=1.10.1",
+    "llmlingua>=0.2.2",
+    "vllm>=0.6.0",
 ]
 
 [project.optional-dependencies]
