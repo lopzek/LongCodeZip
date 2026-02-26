@@ -260,6 +260,7 @@ def compress_llmlingua(context: str, query: str, compressor: PromptCompressor, t
         result = compressed.get('compressed_prompt', '')
         return result if isinstance(result, str) else ""
     except Exception as e:
+        #TODO: fix
         logger.error(f"LLMLingua compression failed: {e}")
         # Fallback: Truncate based on target tokens (approximate)
         tokens = compressor.tokenizer.encode(context_clean)
@@ -464,6 +465,7 @@ def evaluate_completion(
         code_compressor_instance = PromptCompressor(model_name=compression_model_name, device_map="auto")
         logger.info(f"CodeCompressor {compression_model_name} initialized.")
         dummy_prompt = "def hello_world():\n    print('Hello, World!')"*100
+        #TODO: fix
         compressed_prompt = code_compressor_instance.compress_prompt(dummy_prompt, instruction="Complete the following code function given the context.", question="Complete the following code function given the context.", target_token=500)
         logger.info(f"Compressed prompt: {compressed_prompt}")
 
@@ -617,6 +619,7 @@ def evaluate_completion(
         return
 
     logger.info(f"Initializing generation LLM: {model_name}")
+    #TODO: fix
     llm = LLM(
         model=model_name,
         trust_remote_code=trust_remote_code,
