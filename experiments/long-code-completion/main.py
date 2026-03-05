@@ -462,12 +462,12 @@ def evaluate_completion(
     if method in ["full", "no_context"]:
         tokenizer = AutoTokenizer.from_pretrained(model_name)
         # try to compress a dummy prompt to avoid cuda error when initializing the vllm (strange bug)
-        code_compressor_instance = PromptCompressor(model_name=compression_model_name, device_map="auto")
+        code_compressor_instance = PromptCompressor(model_name=compression_model_name, device_map="cuda")
         logger.info(f"CodeCompressor {compression_model_name} initialized.")
-        dummy_prompt = "def hello_world():\n    print('Hello, World!')"*100
-        #TODO: fix
-        compressed_prompt = code_compressor_instance.compress_prompt(dummy_prompt, instruction="Complete the following code function given the context.", question="Complete the following code function given the context.", target_token=500)
-        logger.info(f"Compressed prompt: {compressed_prompt}")
+        # dummy_prompt = "def hello_world():\n    print('Hello, World!')"*100
+        # #TODO: fix
+        # compressed_prompt = code_compressor_instance.compress_prompt(dummy_prompt, instruction="Complete the following code function given the context.", question="Complete the following code function given the context.", target_token=500)
+        # logger.info(f"Compressed prompt: {compressed_prompt}")
 
     # --- 3. Process the Specified Method ---
     logger.info(f"--- Processing Method: {method} ---")
