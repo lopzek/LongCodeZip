@@ -8,7 +8,7 @@
             "name": "Python Debugger: Current File (Fast Debug)",
             "type": "debugpy",
             "request": "launch",
-            "program": "${file}",
+            "program": "${workspaceFolder}/experiments/long-code-completion/main.py",
             "console": "integratedTerminal",
             "args": [
                 "--method",
@@ -29,7 +29,7 @@
             "name": "Python Debugger: Current File (Full Eval)",
             "type": "debugpy",
             "request": "launch",
-            "program": "${file}",
+            "program": "${workspaceFolder}/experiments/long-code-completion/main.py",
             "console": "integratedTerminal",
             "args": [
                 "--method",
@@ -46,7 +46,7 @@
             "name": "Python Debugger: Current File with Arguments",
             "type": "debugpy",
             "request": "launch",
-            "program": "${file}",
+            "program": "${workspaceFolder}/experiments/long-code-completion/main.py",
             "console": "integratedTerminal",
             //    "args": "${command:pickArgs}",
             //"args": ["--method", "llmlingua"]
@@ -66,7 +66,7 @@
             "name": "Python Debugger: Current File (Heavy Model - Responsive Step)",
             "type": "debugpy",
             "request": "launch",
-            "program": "${file}",
+            "program": "${workspaceFolder}/experiments/long-code-completion/main.py",
             "console": "integratedTerminal",
             "justMyCode": true,
             "subProcess": false,
