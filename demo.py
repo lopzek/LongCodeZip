@@ -97,17 +97,18 @@ if __name__ == "__main__":
     # Initialize compressor
     logger.info("Initializing compressor...")
     compression_model_name = "Qwen/Qwen2.5-Coder-7B-Instruct"
+    logger.info(f"model name: {compression_model_name}")
     compressor = LongCodeZip(model_name=compression_model_name)
     
     # Test function-based code file compression with query
-    logger.info("\nTesting function-based code file compression with query...")
+    logger.info("Testing function-based code file compression with query...")
 
     original_tokens = len(compressor.tokenizer.encode(context))
     target_token = 64
     target_ratio = min(1.0, max(0.0, target_token / original_tokens))
     logger.info(f"LongCodeZip: Original tokens={original_tokens}, Target tokens={target_token}, Calculated ratio={target_ratio:.4f}")
 
-    logger.info("\nTesting compression with Coarse-grained compression only...")
+    logger.info("Testing compression with Coarse-grained compression only...")
     result_cond = compressor.compress_code_file(
         code=context,
         query=question,
