@@ -415,7 +415,8 @@ def evaluate_completion(
     # vLLM params
     tensor_parallel_size: int = 1,
     trust_remote_code: bool = True,
-    gpu_memory_utilization: float = 0.9,
+    gpu_memory_utilization: float = 0.85,
+    vllm_max_model_len: int = 16384,
     filter_current_lines_max: int = 50,
     filter_background_tokens_min: int = 3000,
     # New CodeCompressor fine-grained param
@@ -461,13 +462,7 @@ def evaluate_completion(
 
     if method in ["full", "no_context"]:
         tokenizer = AutoTokenizer.from_pretrained(model_name)
-        # try to compress a dummy prompt to avoid cuda error when initializing the vllm (strange bug)
-        code_compressor_instance = PromptCompressor(model_name=compression_model_name, device_map="cuda")
-        logger.info(f"CodeCompressor {compression_model_name} initialized.")
-        # dummy_prompt = "def hello_world():\n    print('Hello, World!')"*100
-        # #TODO: fix
-        # compressed_prompt = code_compressor_instance.compress_prompt(dummy_prompt, instruction="Complete the following code function given the context.", question="Complete the following code function given the context.", target_token=500)
-        # logger.info(f"Compressed prompt: {compressed_prompt}")
+        logger.info(f"Tokenizer {model_name} initialized for method {method}.")
 
     # --- 3. Process the Specified Method ---
     logger.info(f"--- Processing Method: {method} ---")
@@ -619,13 +614,12 @@ def evaluate_completion(
         return
 
     logger.info(f"Initializing generation LLM: {model_name}")
-    #TODO: fix
     llm = LLM(
         model=model_name,
         trust_remote_code=trust_remote_code,
         gpu_memory_utilization=gpu_memory_utilization,
         tensor_parallel_size=tensor_parallel_size,
-        max_model_len=32768
+        max_model_len=vllm_max_model_len
     )
     logger.info(f"Generation LLM {model_name} initialized.")
 
