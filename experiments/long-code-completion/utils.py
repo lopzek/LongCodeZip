@@ -36,7 +36,7 @@ def load_data(path="microsoft/LCC_python", split="test", num_examples=500, filte
     """
     print(f"Loading initial {num_examples} examples from {path} ({split} split)...")
     dataset = datasets.load_dataset(path, split=split)
-    # keep 5 times of num_examples for testing
+    # keep 10 times of num_examples for testing
     dataset = dataset.select(range(num_examples*10))
     original_size = len(dataset) # Size before filtering
 
