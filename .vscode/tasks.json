@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run main.py (Fast Params)",
+      "type": "shell",
+      "command": "/home/wangy75/LongCodeZip/.venv/bin/python",
+      "args": [
+        "experiments/long-code-completion/main.py",
+        "--method",
+        "full",
+        "--num_examples",
+        "1",
+        "--gpu_memory_utilization",
+        "0.5",
+        "--vllm_max_model_len",
+        "16384",
+        "--max_new_tokens",
+        "64",
+        "--batch_size",
+        "1"
+      ],
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run main.py (Full Eval Params)",
+      "type": "shell",
+      "command": "/home/wangy75/LongCodeZip/.venv/bin/python",
+      "args": [
+        "experiments/long-code-completion/main.py",
+        "--method",
+        "full",
+        "--num_examples",
+        "2",
+        "--gpu_memory_utilization",
+        "0.85",
+        "--vllm_max_model_len",
+        "16384"
+      ],
+      "group": "build",
+      "problemMatcher": []
+    }
+  ]
+}
