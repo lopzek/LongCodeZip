@@ -61,6 +61,32 @@
                 "--vllm_max_model_len",
                 "16384"
             ]
+        },
+        {
+            "name": "Python Debugger: Current File (Heavy Model - Responsive Step)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "subProcess": false,
+            "env": {
+                "PYDEVD_LOAD_VALUES_ASYNC": "true"
+            },
+            "args": [
+                "--method",
+                "full",
+                "--num_examples",
+                "1",
+                "--gpu_memory_utilization",
+                "0.75",
+                "--vllm_max_model_len",
+                "16384",
+                "--max_new_tokens",
+                "64",
+                "--batch_size",
+                "1"
+            ]
         }
     ]
 }
