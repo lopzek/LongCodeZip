@@ -417,6 +417,7 @@ def evaluate_completion(
     trust_remote_code: bool = True,
     gpu_memory_utilization: float = 0.85,
     vllm_max_model_len: int = 16384,
+    enforce_eager: bool = False,
     filter_current_lines_max: int = 50,
     filter_background_tokens_min: int = 3000,
     # New CodeCompressor fine-grained param
@@ -619,7 +620,8 @@ def evaluate_completion(
         trust_remote_code=trust_remote_code,
         gpu_memory_utilization=gpu_memory_utilization,
         tensor_parallel_size=tensor_parallel_size,
-        max_model_len=vllm_max_model_len
+        max_model_len=vllm_max_model_len,
+        enforce_eager=enforce_eager,
     )
     logger.info(f"Generation LLM {model_name} initialized.")
 

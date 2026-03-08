@@ -22,7 +22,9 @@
                 "--max_new_tokens",
                 "64",
                 "--batch_size",
-                "1"
+                "1",
+                "--enforce_eager",
+                "True"
             ]
         },
         {
@@ -39,7 +41,9 @@
                 "--gpu_memory_utilization",
                 "0.85",
                 "--vllm_max_model_len",
-                "16384"
+                "16384",
+                "--enforce_eager",
+                "True"
             ]
         },
         {
@@ -59,7 +63,9 @@
                 "--gpu_memory_utilization",
                 "0.85",
                 "--vllm_max_model_len",
-                "16384"
+                "16384",
+                "--enforce_eager",
+                "True"
             ]
         },
         {
@@ -85,7 +91,142 @@
                 "--max_new_tokens",
                 "64",
                 "--batch_size",
-                "1"
+                "1",
+                "--enforce_eager",
+                "True"
+            ]
+        },
+        {
+            "name": "Python Debugger: Full (7B, 2 GPUs TP=2)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/experiments/long-code-completion/main.py",
+            "console": "integratedTerminal",
+            "env": {
+                "CUDA_VISIBLE_DEVICES": "0,1"
+            },
+            "args": [
+                "--method",
+                "full",
+                "--num_examples",
+                "1",
+                "--gpu_memory_utilization",
+                "0.75",
+                "--vllm_max_model_len",
+                "16384",
+                "--max_new_tokens",
+                "64",
+                "--batch_size",
+                "1",
+                "--model_name",
+                "Qwen/Qwen2.5-Coder-7B-Instruct",
+                "--tensor_parallel_size",
+                "2",
+                "--enforce_eager",
+                "True"
+            ]
+        },
+        {
+            "name": "Python Debugger: Full (7B, 2 GPUs TP=2, Safe)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/experiments/long-code-completion/main.py",
+            "console": "integratedTerminal",
+            "env": {
+                "CUDA_VISIBLE_DEVICES": "0,1",
+                "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True"
+            },
+            "args": [
+                "--method",
+                "full",
+                "--num_examples",
+                "1",
+                "--gpu_memory_utilization",
+                "0.70",
+                "--vllm_max_model_len",
+                "12288",
+                "--max_new_tokens",
+                "32",
+                "--batch_size",
+                "1",
+                "--model_name",
+                "Qwen/Qwen2.5-Coder-7B-Instruct",
+                "--tensor_parallel_size",
+                "2",
+                "--enforce_eager",
+                "True"
+            ]
+        },
+        {
+            "name": "Python Debugger: Full (7B TP=2, uv params)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/experiments/long-code-completion/main.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "subProcess": false,
+            "env": {
+                "CUDA_VISIBLE_DEVICES": "0,1",
+                "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True",
+                "PYDEVD_USE_FRAME_EVAL": "NO"
+            },
+            "args": [
+                "--method",
+                "full",
+                "--num_examples",
+                "1",
+                "--gpu_memory_utilization",
+                "0.70",
+                "--vllm_max_model_len",
+                "12288",
+                "--max_new_tokens",
+                "32",
+                "--batch_size",
+                "1",
+                "--model_name",
+                "Qwen/Qwen2.5-Coder-7B-Instruct",
+                "--tensor_parallel_size",
+                "2",
+                "--enforce_eager",
+                "True"
+            ]
+        },
+        {
+            "name": "Python Debugger: Full (7B, 2 GPUs TP=2, Disk Safe)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/experiments/long-code-completion/main.py",
+            "console": "integratedTerminal",
+            "env": {
+                "CUDA_VISIBLE_DEVICES": "0,1",
+                "VLLM_NO_USAGE_STATS": "1",
+                "TMPDIR": "/mnt/hdd-data2/wangy75/.tmp",
+                "XDG_CACHE_HOME": "/mnt/hdd-data2/wangy75/.cache",
+                "XDG_CONFIG_HOME": "/mnt/hdd-data2/wangy75/.config",
+                "HF_HOME": "/mnt/hdd-data2/wangy75/.cache/huggingface",
+                "VLLM_CACHE_ROOT": "/mnt/hdd-data2/wangy75/.cache/vllm",
+                "UV_CACHE_DIR": "/mnt/hdd-data2/wangy75/.cache/uv",
+                "TORCH_HOME": "/mnt/hdd-data2/wangy75/.cache/torch"
+            },
+            "args": [
+                "--method",
+                "full",
+                "--num_examples",
+                "1",
+                "--gpu_memory_utilization",
+                "0.75",
+                "--vllm_max_model_len",
+                "16384",
+                "--max_new_tokens",
+                "64",
+                "--batch_size",
+                "1",
+                "--model_name",
+                "Qwen/Qwen2.5-Coder-7B-Instruct",
+                "--tensor_parallel_size",
+                "2",
+                "--enforce_eager",
+                "True"
             ]
         }
     ]
